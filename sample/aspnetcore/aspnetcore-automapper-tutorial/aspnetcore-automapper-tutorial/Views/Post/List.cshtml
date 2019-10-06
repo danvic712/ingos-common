@@ -1,0 +1,34 @@
+﻿@model IList<aspnetcore_automapper_tutorial.ViewModels.Post.PostViewModel>
+@{
+    ViewData["Title"] = "Post List";
+}
+
+<h2>Post List</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Serial No.</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Comments</th>
+            <th>ReleaseDate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td> @item.SerialNo </td>
+                    <td> @item.Title </td>
+                    <td> @item.Author </td>
+                    <td> @item.Category </td>
+                    <td> @item.CommentCounts </td>
+                    <td> @item.ReleaseDate </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
