@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using aspnetcore_mediatr_tutorial.Core.Routing;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,7 +25,7 @@ namespace aspnetcore_mediatr_tutorial
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             // Config routing format
             services.AddRouting(options =>
@@ -32,6 +33,9 @@ namespace aspnetcore_mediatr_tutorial
                 options.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer);
                 options.LowercaseUrls = true;
             });
+
+            // Config mediator
+            services.AddMediatR(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

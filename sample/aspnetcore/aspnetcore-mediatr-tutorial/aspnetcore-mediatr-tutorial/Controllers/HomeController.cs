@@ -5,18 +5,39 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using aspnetcore_mediatr_tutorial.Models;
+using MediatR;
+using aspnetcore_mediatr_tutorial.ViewModels;
 
 namespace aspnetcore_mediatr_tutorial.Controllers
 {
     public class HomeController : Controller
     {
+        #region Initialize
+
+        /// <summary>
+        ///
+        /// </summary>
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        /// <summary>
+        ///
+        /// </summary>
+        private readonly IMediator _mediator;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="mediator"></param>
+        public HomeController(ILogger<HomeController> logger, IMediator mediator)
         {
-            _logger = logger;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
+
+        #endregion Initialize
+
+        #region Views
 
         public IActionResult Index()
         {
@@ -28,10 +49,21 @@ namespace aspnetcore_mediatr_tutorial.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        #endregion Views
+
+        #region APIs
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Login(LoginViewModel viewModel)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return Json("");
         }
+
+        #endregion APIs
     }
 }
