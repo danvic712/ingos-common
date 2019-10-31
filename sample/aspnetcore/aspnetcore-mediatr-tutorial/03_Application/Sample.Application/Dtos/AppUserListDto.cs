@@ -1,19 +1,19 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file= "UserQuery.cs">
+// <copyright file= "UserDto.cs">
 //     Copyright (c) Danvic.Wang All rights reserved.
 // </copyright>
 // Author: Danvic.Wang
-// Created DateTime: 2019/10/30 11:47:30
+// Created DateTime: 2019/10/30 11:45:35 
 // Modified by:
-// Description:
+// Description: 
 //-----------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sample.Application.Queries
+namespace Sample.Application.Dtos
 {
-    public class UserQuery
+    public class AppUserListDto
     {
     }
 }

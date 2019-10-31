@@ -1,9 +1,9 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file= "UserDto.cs">
+// <copyright file= "AppUserEditDto.cs">
 //     Copyright (c) Danvic.Wang All rights reserved.
 // </copyright>
 // Author: Danvic.Wang
-// Created DateTime: 2019/10/30 11:45:35 
+// Created DateTime: 2019/10/30 19:36:59 
 // Modified by:
 // Description: 
 //-----------------------------------------------------------------------
@@ -13,7 +13,7 @@ using System.Text;
 
 namespace Sample.Application.Dtos
 {
-    public class UserDto
+    public class AppUserEditDto
     {
     }
 }
