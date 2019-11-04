@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sample.Application</name>
+    </assembly>
+    <members>
+        <member name="F:Sample.Application.Behaviors.LoggingBehavior`2._logger">
+            <summary>
+            logger
+            </summary>
+        </member>
+        <member name="M:Sample.Application.Behaviors.LoggingBehavior`2.#ctor(Microsoft.Extensions.Logging.ILogger{Sample.Application.Behaviors.LoggingBehavior{`0,`1}})">
+            <summary>
+            ctor
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Sample.Application.Behaviors.LoggingBehavior`2.Handle(`0,System.Threading.CancellationToken,MediatR.RequestHandlerDelegate{`1})">
+            <summary>
+            logging command info
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
