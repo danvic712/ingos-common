@@ -8,12 +8,14 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sample.Api.Core.Extensions.ApiVersion;
 using Sample.Api.Core.Extensions.Swagger;
+using Sample.Domain;
 using Sample.Infrastructure.AutoMapper.Extensions;
 
 namespace Sample.Api
@@ -39,6 +41,10 @@ namespace Sample.Api
 
             // Config automapper mapping rules
             services.AddAutoMapperProfiles();
+
+            // Config mysql server database connection
+            services.AddDbContext<UserContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("SampleConnection")));
 
             // Use lowercase urls router mode
             services.AddRouting(options =>

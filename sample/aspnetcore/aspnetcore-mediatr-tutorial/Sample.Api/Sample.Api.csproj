@@ -16,6 +16,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.6" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="4.0.1" />
   </ItemGroup>
 
