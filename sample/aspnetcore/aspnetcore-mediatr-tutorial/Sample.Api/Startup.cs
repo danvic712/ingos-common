@@ -16,6 +16,7 @@ using Microsoft.Extensions.Options;
 using Sample.Api.Core.Extensions.ApiVersion;
 using Sample.Api.Core.Extensions.Swagger;
 using Sample.Domain;
+using Sample.Domain.SeedWorks;
 using Sample.Infrastructure.AutoMapper.Extensions;
 
 namespace Sample.Api
@@ -43,7 +44,7 @@ namespace Sample.Api
             services.AddAutoMapperProfiles();
 
             // Config mysql server database connection
-            services.AddDbContext<UserContext>(options =>
+            services.AddDbContext<UserApplicationDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("SampleConnection")));
 
             // Use lowercase urls router mode

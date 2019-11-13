@@ -1,15 +1,14 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file= "GenerateUserCommandHandler.cs">
+// <copyright file= "UserLoginCommandHandler.cs">
 //     Copyright (c) Danvic.Wang All rights reserved.
 // </copyright>
 // Author: Danvic.Wang
-// Created DateTime: 2019/10/30 11:46:34
+// Created DateTime: 2019/11/13 20:29:37
 // Modified by:
 // Description:
 //-----------------------------------------------------------------------
 using MediatR;
 using Sample.Application.Commands;
-using Sample.Application.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,9 +17,9 @@ using System.Threading.Tasks;
 
 namespace Sample.Application.CommandHandlers
 {
-    public class GenerateUserCommandHandler : IRequestHandler<GenerateUserCommand, AppUserListDto>
+    public class UserLoginCommandHandler : IRequestHandler<UserLoginCommand, bool>
     {
-        public Task<AppUserListDto> Handle(GenerateUserCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(UserLoginCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

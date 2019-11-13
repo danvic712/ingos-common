@@ -1,21 +1,20 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file= "GenerateUserCommand.cs">
+// <copyright file= "UserLoginCommand.cs">
 //     Copyright (c) Danvic.Wang All rights reserved.
 // </copyright>
 // Author: Danvic.Wang
-// Created DateTime: 2019/10/30 11:45:13
+// Created DateTime: 2019/11/13 20:28:17
 // Modified by:
 // Description:
 //-----------------------------------------------------------------------
 using MediatR;
-using Sample.Application.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Sample.Application.Commands
 {
-    public class GenerateUserCommand : IRequest<AppUserListDto>
+    public class UserLoginCommand : IRequest<bool>
     {
     }
 }

@@ -104,6 +104,19 @@ namespace Sample.Api.Controllers.v1
         }
 
         /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="login">用户登录数据传输对象</param>
+        /// <returns></returns>
+        [HttpPost("login")]
+        [ProducesResponseType(typeof(AppUserLoginDto), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult Post([FromBody] AppUserLoginDto login)
+        {
+            return Ok();
+        }
+
+        /// <summary>
         /// 更新用户信息
         /// </summary>
         /// <param name="id">用户唯一标识</param>

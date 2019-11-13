@@ -15,7 +15,7 @@ namespace Sample.Domain.AggregateModels
         /// <summary>
         /// ctor
         /// </summary>
-        private Address()
+        public Address()
         {
         }
 
