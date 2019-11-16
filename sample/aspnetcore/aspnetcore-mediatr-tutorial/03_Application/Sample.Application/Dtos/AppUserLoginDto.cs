@@ -29,6 +29,7 @@ namespace Sample.Application.Dtos
         /// 密码
         /// </summary>
         [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         /// <summary>

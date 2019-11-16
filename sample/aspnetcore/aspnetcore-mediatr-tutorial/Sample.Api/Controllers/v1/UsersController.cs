@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sample.Application.Commands;
 using Sample.Application.Dtos;
 
 namespace Sample.Api.Controllers.v1
@@ -35,124 +36,34 @@ namespace Sample.Api.Controllers.v1
         #region APIs
 
         /// <summary>
-        /// 获取全部的用户信息
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [ProducesResponseType(typeof(IList<AppUserListDto>), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
-        public IActionResult Get()
-        {
-            // 1、Get resource data
-
-            // 2、Determine if the request was successful
-            if (true)
-                return Ok(new List<AppUserListDto>());
-            else
-                return BadRequest(new
-                {
-                    statusCode = StatusCodes.Status400BadRequest,
-                    description = "The error description",
-                    msg = "The detail error message"
-                });
-        }
-
-        /// <summary>
-        /// 获取用户详细信息
-        /// </summary>
-        /// <param name="id">用户唯一标识</param>
-        /// <returns></returns>
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(AppUserEditDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesDefaultResponseType(typeof(AppUserEditDto))]
-        public IActionResult Get(string id)
-        {
-            // 1、Get resource data by id
-            AppUserEditDto user = null;
-
-            if (user == null)
-                return NotFound();
-            else
-                return Ok(user);
-        }
-
-        /// <summary>
-        /// 根据条件搜索网站用户信息
-        /// </summary>
-        /// <param name="search">搜索用户信息数据传输对象</param>
-        /// <returns></returns>
-        [HttpGet("query")]
-        [ProducesResponseType(typeof(IEnumerable<AppUserListDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Get([FromQuery]AppUserListSearchDto search)
-        {
-            return Ok();
-        }
-
-        /// <summary>
-        /// 新增用户信息
-        /// </summary>
-        /// <param name="edit">用户编辑信息数据传输对象</param>
-        [HttpPost]
-        [ProducesResponseType(typeof(AppUserEditDto), StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post([FromBody] AppUserEditDto edit)
-        {
-            return Created("", new AppUserEditDto());
-        }
-
-        /// <summary>
         /// 用户登录
         /// </summary>
         /// <param name="login">用户登录数据传输对象</param>
         /// <returns></returns>
         [HttpPost("login")]
-        [ProducesResponseType(typeof(AppUserLoginDto), StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post([FromBody] AppUserLoginDto login)
-        {
-            return Ok();
-        }
-
-        /// <summary>
-        /// 更新用户信息
-        /// </summary>
-        /// <param name="id">用户唯一标识</param>
-        /// <param name="edit">用户编辑信息数据传输对象</param>
-        [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(AppUserEditDto), StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult Put(string id, [FromBody] AppUserEditDto edit)
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> Post([FromBody] AppUserLoginDto login)
         {
-            return Ok();
-        }
+            // 实体映射转换
+            var command = new UserLoginCommand(login.Account, login.Password, login.VerificationCode);
 
-        /// <summary>
-        /// 更新用户状态
-        /// </summary>
-        /// <param name="id">用户唯一标识</param>
-        [HttpPut("{id}/refresh")]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(AppUserEditDto), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult Put(string id)
-        {
-            return Ok();
-        }
+            bool flag = await _mediator.Send(command);
 
-        /// <summary>
-        /// 删除用户信息
-        /// </summary>
-        /// <param name="id">用户唯一标识</param>
-        [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(AppUserEditDto), StatusCodes.Status404NotFound)]
-        public IActionResult Delete(string id)
-        {
-            return Delete(id);
+            if (flag)
+                return Ok(new
+                {
+                    code = 20001,
+                    msg = $"{login.Account} 用户登录成功",
+                    data = login
+                });
+            else
+                return Unauthorized(new
+                {
+                    code = 40101,
+                    msg = $"{login.Account} 用户登录失败",
+                    data = login
+                });
         }
 
         #endregion APIs

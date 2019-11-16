@@ -24,6 +24,35 @@
             <param name="next"></param>
             <returns></returns>
         </member>
+        <member name="T:Sample.Application.CommandHandlers.UserLoginCommandHandler">
+            <summary>
+            用户登录请求处理
+            </summary>
+        </member>
+        <member name="F:Sample.Application.CommandHandlers.UserLoginCommandHandler._userRepository">
+            <summary>
+            仓储实例
+            </summary>
+        </member>
+        <member name="M:Sample.Application.CommandHandlers.UserLoginCommandHandler.#ctor(Sample.Domain.Repositories.Contacts.IUserRepository)">
+            <summary>
+            ctor
+            </summary>
+            <param name="userRepository"></param>
+        </member>
+        <member name="M:Sample.Application.CommandHandlers.UserLoginCommandHandler.Handle(Sample.Application.Commands.UserLoginCommand,System.Threading.CancellationToken)">
+            <summary>
+            Command Handler
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sample.Application.Commands.UserLoginCommand">
+            <summary>
+            用户登录请求
+            </summary>
+        </member>
         <member name="P:Sample.Application.Commands.UserLoginCommand.Account">
             <summary>
             账户

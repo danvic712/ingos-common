@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -18,6 +20,7 @@ using Sample.Api.Core.Extensions.Swagger;
 using Sample.Domain;
 using Sample.Domain.SeedWorks;
 using Sample.Infrastructure.AutoMapper.Extensions;
+using Sample.Infrastructure.MediatR.Extensions;
 
 namespace Sample.Api
 {
@@ -39,6 +42,26 @@ namespace Sample.Api
             services.AddMvc(// Add cors authorization filter
                 options => options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName))
             ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            // Load assembly from appsetting.json
+            //
+            string assemblies = Configuration["Assembly:Function"];
+
+            if (!string.IsNullOrEmpty(assemblies))
+            {
+                foreach (var item in assemblies.Split('|', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    Assembly assembly = Assembly.Load(item);
+                    foreach (var implement in assembly.GetTypes())
+                    {
+                        Type[] interfaceType = implement.GetInterfaces();
+                        foreach (var service in interfaceType)
+                        {
+                            services.AddTransient(service, implement);
+                        }
+                    }
+                }
+            }
 
             // Config automapper mapping rules
             services.AddAutoMapperProfiles();
@@ -75,6 +98,13 @@ namespace Sample.Api
                 Description = "Sample.API 接口文档",
                 Title = "Sample.API",
                 Paths = new List<string> { "Sample.Api.xml", "Sample.Application.xml" }
+            });
+
+            // Config mediatr
+            services.AddCustomMediatR(new MediatorDescriptionOptions
+            {
+                StartupClassType = typeof(Startup),
+                Assembly = Configuration["Assembly:Mediator"].Split("|", StringSplitOptions.RemoveEmptyEntries)
             });
         }
 

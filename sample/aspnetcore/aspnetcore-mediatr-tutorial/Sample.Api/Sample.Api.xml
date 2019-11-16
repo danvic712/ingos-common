@@ -15,57 +15,12 @@
             </summary>
             <param name="mediator"></param>
         </member>
-        <member name="M:Sample.Api.Controllers.v1.UsersController.Get">
-            <summary>
-            获取全部的用户信息
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Sample.Api.Controllers.v1.UsersController.Get(System.String)">
-            <summary>
-            获取用户详细信息
-            </summary>
-            <param name="id">用户唯一标识</param>
-            <returns></returns>
-        </member>
-        <member name="M:Sample.Api.Controllers.v1.UsersController.Get(Sample.Application.Dtos.AppUserListSearchDto)">
-            <summary>
-            根据条件搜索网站用户信息
-            </summary>
-            <param name="search">搜索用户信息数据传输对象</param>
-            <returns></returns>
-        </member>
-        <member name="M:Sample.Api.Controllers.v1.UsersController.Post(Sample.Application.Dtos.AppUserEditDto)">
-            <summary>
-            新增用户信息
-            </summary>
-            <param name="edit">用户编辑信息数据传输对象</param>
-        </member>
         <member name="M:Sample.Api.Controllers.v1.UsersController.Post(Sample.Application.Dtos.AppUserLoginDto)">
             <summary>
             用户登录
             </summary>
             <param name="login">用户登录数据传输对象</param>
             <returns></returns>
-        </member>
-        <member name="M:Sample.Api.Controllers.v1.UsersController.Put(System.String,Sample.Application.Dtos.AppUserEditDto)">
-            <summary>
-            更新用户信息
-            </summary>
-            <param name="id">用户唯一标识</param>
-            <param name="edit">用户编辑信息数据传输对象</param>
-        </member>
-        <member name="M:Sample.Api.Controllers.v1.UsersController.Put(System.String)">
-            <summary>
-            更新用户状态
-            </summary>
-            <param name="id">用户唯一标识</param>
-        </member>
-        <member name="M:Sample.Api.Controllers.v1.UsersController.Delete(System.String)">
-            <summary>
-            删除用户信息
-            </summary>
-            <param name="id">用户唯一标识</param>
         </member>
     </members>
 </doc>

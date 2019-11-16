@@ -8,28 +8,27 @@
 // Description:
 //-----------------------------------------------------------------------
 using MediatR;
-using System.Runtime.Serialization;
 
 namespace Sample.Application.Commands
 {
+    /// <summary>
+    /// 用户登录请求
+    /// </summary>
     public class UserLoginCommand : IRequest<bool>
     {
         /// <summary>
         /// 账户
         /// </summary>
-        [DataMember]
         public string Account { get; private set; }
 
         /// <summary>
         /// 密码
         /// </summary>
-        [DataMember]
         public string Password { get; private set; }
 
         /// <summary>
         /// 验证码
         /// </summary>
-        [DataMember]
         public string VerificationCode { get; private set; }
 
         /// <summary>

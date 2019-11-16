@@ -7,10 +7,13 @@
 // Modified by:
 // Description:
 //-----------------------------------------------------------------------
+using Microsoft.EntityFrameworkCore;
 using Sample.Domain.AggregateModels;
 using Sample.Domain.Repositories.Contacts;
+using Sample.Domain.SeedWorks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,16 +21,41 @@ namespace Sample.Domain.Repositories
 {
     public class UserRepository : IUserRepository
     {
+        #region Initialize
+
+        /// <summary>
+        /// 数据库上下文对象
+        /// </summary>
+        private readonly UserApplicationDbContext _context;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="context"></param>
+        public UserRepository(UserApplicationDbContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
+        #endregion Initialize
+
         #region Services
 
         /// <summary>
-        /// Get user info by email address
+        /// 获取用户信息
         /// </summary>
-        /// <param name="email">email address</param>
+        /// <param name="account">账户名</param>
+        /// <param name="password">密码</param>
         /// <returns></returns>
-        public AppUser GetAppUserInfoByEmail(string email)
+        public async Task<AppUser> GetAppUserInfo(string account, string password)
         {
-            throw new NotImplementedException();
+            using (_context)
+            {
+                var appUser = await _context.AppUsers
+                    .FirstOrDefaultAsync(i => i.Account.Equals(account) && i.Password.Equals(password));
+
+                return appUser;
+            }
         }
 
         #endregion Services
