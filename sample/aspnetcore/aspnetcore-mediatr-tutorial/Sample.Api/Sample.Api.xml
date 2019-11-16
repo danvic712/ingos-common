@@ -4,6 +4,17 @@
         <name>Sample.Api</name>
     </assembly>
     <members>
+        <member name="F:Sample.Api.Controllers.v1.UsersController._mediator">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Sample.Api.Controllers.v1.UsersController.#ctor(MediatR.IMediator)">
+            <summary>
+            ctor
+            </summary>
+            <param name="mediator"></param>
+        </member>
         <member name="M:Sample.Api.Controllers.v1.UsersController.Get">
             <summary>
             获取全部的用户信息
@@ -34,7 +45,7 @@
             <summary>
             用户登录
             </summary>
-            <param name="dto">用户登录数据传输对象</param>
+            <param name="login">用户登录数据传输对象</param>
             <returns></returns>
         </member>
         <member name="M:Sample.Api.Controllers.v1.UsersController.Put(System.String,Sample.Application.Dtos.AppUserEditDto)">

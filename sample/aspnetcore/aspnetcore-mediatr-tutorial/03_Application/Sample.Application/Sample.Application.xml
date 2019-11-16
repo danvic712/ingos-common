@@ -24,6 +24,29 @@
             <param name="next"></param>
             <returns></returns>
         </member>
+        <member name="P:Sample.Application.Commands.UserLoginCommand.Account">
+            <summary>
+            账户
+            </summary>
+        </member>
+        <member name="P:Sample.Application.Commands.UserLoginCommand.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Sample.Application.Commands.UserLoginCommand.VerificationCode">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="M:Sample.Application.Commands.UserLoginCommand.#ctor(System.String,System.String,System.String)">
+            <summary>
+            ctor
+            </summary>
+            <param name="account">账户</param>
+            <param name="password">密码</param>
+            <param name="verificationCode">验证码</param>
+        </member>
         <member name="T:Sample.Application.Dtos.AppUserLoginDto">
             <summary>
             用户登录数据传输对象
