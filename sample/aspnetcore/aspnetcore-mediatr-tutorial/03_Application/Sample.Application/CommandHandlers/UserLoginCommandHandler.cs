@@ -11,8 +11,6 @@ using MediatR;
 using Sample.Application.Commands;
 using Sample.Domain.Repositories.Contacts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,12 +29,19 @@ namespace Sample.Application.CommandHandlers
         private readonly IUserRepository _userRepository;
 
         /// <summary>
+        ///
+        /// </summary>
+        private readonly IMediator _mediator;
+
+        /// <summary>
         /// ctor
         /// </summary>
         /// <param name="userRepository"></param>
-        public UserLoginCommandHandler(IUserRepository userRepository)
+        /// <param name="mediator"></param>
+        public UserLoginCommandHandler(IUserRepository userRepository, IMediator mediator)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         #endregion Initizalize
@@ -50,13 +55,16 @@ namespace Sample.Application.CommandHandlers
         public async Task<bool> Handle(UserLoginCommand request, CancellationToken cancellationToken)
         {
             // 1、判断验证码是否正确
-            if (!request.VerificationCode.Equals("12345"))
+            if (string.IsNullOrEmpty(request.VerificationCode))
                 return false;
 
             // 2、验证登录密码是否正确
             var appUser = await _userRepository.GetAppUserInfo(request.Account.Trim(), request.Password.Trim());
             if (appUser == null)
                 return false;
+
+            // 3、记录登录事件
+            appUser.SetUserLoginRecord(_mediator);
 
             return true;
         }

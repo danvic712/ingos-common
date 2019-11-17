@@ -7,6 +7,8 @@
 // Modified by:
 // Description:
 //-----------------------------------------------------------------------
+using MediatR;
+using Sample.Domain.Events;
 using System;
 
 namespace Sample.Domain.AggregateModels
@@ -101,5 +103,17 @@ namespace Sample.Domain.AggregateModels
         public bool IsEnabled { get; set; }
 
         #endregion Attributes
+
+        #region Events
+
+        /// <summary>
+        ///
+        /// </summary>
+        public void SetUserLoginRecord(IMediator mediator)
+        {
+            mediator.Publish(new AppUserLoginEvent(Account));
+        }
+
+        #endregion Events
     }
 }

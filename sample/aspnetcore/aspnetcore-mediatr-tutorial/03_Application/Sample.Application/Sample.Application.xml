@@ -34,11 +34,17 @@
             仓储实例
             </summary>
         </member>
-        <member name="M:Sample.Application.CommandHandlers.UserLoginCommandHandler.#ctor(Sample.Domain.Repositories.Contacts.IUserRepository)">
+        <member name="F:Sample.Application.CommandHandlers.UserLoginCommandHandler._mediator">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Sample.Application.CommandHandlers.UserLoginCommandHandler.#ctor(Sample.Domain.Repositories.Contacts.IUserRepository,MediatR.IMediator)">
             <summary>
             ctor
             </summary>
             <param name="userRepository"></param>
+            <param name="mediator"></param>
         </member>
         <member name="M:Sample.Application.CommandHandlers.UserLoginCommandHandler.Handle(Sample.Application.Commands.UserLoginCommand,System.Threading.CancellationToken)">
             <summary>
@@ -75,6 +81,44 @@
             <param name="account">账户</param>
             <param name="password">密码</param>
             <param name="verificationCode">验证码</param>
+        </member>
+        <member name="F:Sample.Application.DomainEventHandlers.AppUserLogin.SetCurrentUserEventHandler._logger">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Sample.Application.DomainEventHandlers.AppUserLogin.SetCurrentUserEventHandler.#ctor(Microsoft.Extensions.Logging.ILogger{Sample.Application.DomainEventHandlers.AppUserLogin.SetCurrentUserEventHandler})">
+             <summary>
+            
+             </summary>
+             <param name="logger"></param>
+        </member>
+        <member name="M:Sample.Application.DomainEventHandlers.AppUserLogin.SetCurrentUserEventHandler.Handle(Sample.Domain.Events.AppUserLoginEvent,System.Threading.CancellationToken)">
+            <summary>
+            Notification handler
+            </summary>
+            <param name="notification"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Sample.Application.DomainEventHandlers.AppUserLogin.SetLoginRecordEventHandler._logger">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Sample.Application.DomainEventHandlers.AppUserLogin.SetLoginRecordEventHandler.#ctor(Microsoft.Extensions.Logging.ILogger{Sample.Application.DomainEventHandlers.AppUserLogin.SetLoginRecordEventHandler})">
+             <summary>
+            
+             </summary>
+             <param name="logger"></param>
+        </member>
+        <member name="M:Sample.Application.DomainEventHandlers.AppUserLogin.SetLoginRecordEventHandler.Handle(Sample.Domain.Events.AppUserLoginEvent,System.Threading.CancellationToken)">
+            <summary>
+            Notification handler
+            </summary>
+            <param name="notification"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
         </member>
         <member name="T:Sample.Application.Dtos.AppUserLoginDto">
             <summary>
