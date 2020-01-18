@@ -26,6 +26,8 @@ namespace aspnetcore_startup.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            _logger.LogInformation($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} requested this api");
+
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
